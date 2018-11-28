@@ -1,0 +1,12 @@
+2. Explain the difference between process.nextTick and setImmediate?
+     - process.nextTick() is not part of the event loop and it adds the callback 
+   into the nextTick queue. Node processes all the callbacks in the nextTick queue
+   after the current operation completes and before the event loop continues.
+     - SetImmidate schedules a callback to run at check phase of the event loop after 
+    events' callbacks..
+
+   => Use setImmediate if you want to queue the function behind whatever I/O
+   event callbacks that are already in the event queue. 
+   => Use process.nextTick to effectively queue the function at the head of
+   the event queue so that it executes immediately after the current 
+   function completes.

@@ -1,0 +1,7 @@
+3. Name 10 core modules that Node provides by default.
+   - fs         - timers
+   - http       - url
+   - https      - v8
+   - os         - vm
+   - assert     - Zlib
+   - stream     - readline
