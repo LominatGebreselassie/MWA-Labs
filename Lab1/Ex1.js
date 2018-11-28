@@ -1,9 +1,47 @@
-const add=(a,b)=>{
-    return setTimeout(()=>{
-        console.log(a+b)});
+{
+    const str = "This house is nice!";
+
+    function filterWords(arr) {
+        let ret = this
+        arr.map(s => ret = ret.replace(s, "***"));
+        return ret;
+    };
+
+    String.prototype.filterWords = filterWords;
+
+    function promise(arr) {
+        return new Promise(res => {
+            setTimeout(() => res(str.filterWords(arr)), 1000);
+        });
     }
-    console.log('start');
-    const A = add(1,2);
-    const B = add(2,3);
-    const C = add(3,4);
-    console.log('end');
+
+    async function async(arr) {
+        const filteredWords = await promise(arr);
+        console.log(`Async/await: ${filteredWords}`);
+    }
+
+    const { from } = require('rxjs');
+    const { map } = require('rxjs/operators');
+    function observable(arr) {
+        let ss = str;
+        return from(arr).pipe(map((a)=>{ return ss = ss.replace(a, "***");  }));
+    }
+
+
+    const arr = ['house', 'nice'];
+
+    //es6
+    console.log(`es6: ${str.filterWords(arr)}`);
+
+    //Promise
+    promise(arr)
+        .then(res => console.log(`Promise: ${res}`))
+        .catch(err => console.log(err));
+
+    //async
+    async(arr);
+
+    //Observable
+    observable(arr).subscribe(i => console.log(`Observable: ${i}`));
+
+}
