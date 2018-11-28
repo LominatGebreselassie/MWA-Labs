@@ -1,42 +1,16 @@
-const { from } = require('rxjs');
-const { filter } = require('rxjs/operators');
-//adding functions to the array prototype
-Array.prototype.even = function () {
-   var evenFunct = function () {
-        var evennumbers = [];
-        from(this)
-            .pipe(
-                filter(number => number % 2 == 0)
-            )
-            .subscribe(
-                evenValues => {
-                    evennumbers.push(evenValues);
-                }
-            );
-        console.log(evennumbers);
-    };
-    setTimeout(evenFunct.bind(this), 0);
+{
+    Array.prototype.even = function () {
+        setImmediate(() => {
+            console.log(this.filter((x) => x % 2 === 0))
+        });
+    }
+    Array.prototype.odd = function () {
+        setImmediate(() => {
+            console.log(this.filter((x) => x % 2 !== 0))
+        });
+    }
+    console.log('start');
+    [1, 2, 3, 4, 5, 6, 7, 8].even();
+    [1, 2, 3, 4, 5, 6, 7, 8].odd();
+    console.log('end');
 }
-
-Array.prototype.odd = function () {
-    var oddFunc = function () {
-        var oddNumbers = [];
-        from(this)
-            .pipe(
-                filter(values => values % 2 != 0)
-            )
-            .subscribe(
-                odds => {
-                    oddNumbers.push(odds);
-                }
-            );
-        console.log(oddNumbers);
-    };
-    var oddFunction = oddFunc.bind(this);
-    setTimeout(oddFunction, 0);
-}
-
-console.log('Start');
-[1, 2, 3, 4, 5, 6, 7, 8].even();
-[1, 2, 3, 4, 5, 6, 7, 8].odd();
-console.log('End');
