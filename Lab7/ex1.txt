@@ -1,0 +1,19 @@
+
+    var myDoc = { 
+                _id: objectId(), 
+                name: { 
+                     firstname: String, 
+                     lastname: String, 
+                     },
+                contact: {
+                    phone:"123-456-7889",
+                    email:"abc@gmail.com"
+                     }, 
+                     books:[{
+                         title: String, 
+                         ISBN: String,  
+                         author: [String], 
+                         tags:[String], 
+                         returndate: Date  
+                         }] 
+                    }
